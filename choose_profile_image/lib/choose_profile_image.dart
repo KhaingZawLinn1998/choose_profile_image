@@ -10,8 +10,8 @@ import 'package:zoom_widget/zoom_widget.dart';
 import 'package:image/image.dart' as img;
 
 class ChooseProfileImage extends StatefulWidget {
-  const ChooseProfileImage({super.key, this.callBack});
-  final Function(String base64, String imgName, String imgPath)? callBack;
+  const ChooseProfileImage({super.key, required this.callBack});
+  final Function(String base64, String imgName, String imgPath) callBack;
 
   @override
   State<ChooseProfileImage> createState() => _ChooseProfileImageState();
@@ -25,7 +25,6 @@ class _ChooseProfileImageState extends State<ChooseProfileImage> {
   String imageName = "";
   bool isChoosedImage = false;
   XFile? _pickedFile;
-  CroppedFile? _croppedFile;
   String imagePath = "";
 
   void _fetchProfileImage() async {
@@ -74,17 +73,14 @@ class _ChooseProfileImageState extends State<ChooseProfileImage> {
         ],
       );
       if (croppedFile != null) {
-        setState(() {
-          _croppedFile = croppedFile;
-        });
-        _profileImagePath.value = _croppedFile!.path;
+        _profileImagePath.value = croppedFile.path;
         final imageBytes =
             img.decodeImage(File(_profileImagePath.value).readAsBytesSync())!;
         imagebytes = Uint8List.fromList(img.encodePng(imageBytes));
         imagebase64string = base64.encode(imagebytes);
         imagePath = base64.encode(imagebytes);
         imageName = _pickedFile!.name;
-        widget.callBack!(imagebase64string, imageName, imagePath);
+        widget.callBack(imagebase64string, imageName, imagePath);
       }
     }
   }
