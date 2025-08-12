@@ -60,9 +60,10 @@ packages:
   choose_profile_image:
     dependency: "direct main"
     description:
-      path: "../choose_profile_image"
-      relative: true
-    source: path
+      name: choose_profile_image
+      sha256: eebf57a7f0adb77ed4d4d1220d3e8463cd00afe894107f023fe0e5c2cb3edb25
+      url: "https://pub.dev"
+    source: hosted
     version: "0.0.1"
   clock:
     dependency: transitive
