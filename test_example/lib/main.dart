@@ -35,7 +35,9 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text('Choose Profile Image Example'),
       ),
-      body: ChooseProfileImage(),
+      body: ChooseProfileImage(
+        callBack: (base64, imgName, imgPath) {},
+      ),
     );
   }
 }
